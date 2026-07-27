@@ -17,12 +17,12 @@
         }
         
         body { 
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            background: #ffffff;
             min-height: 100vh;
             padding: 20px;
+            color: #000000;
         }
         
-        /* تأثيرات الخلفية */
         .bg-decoration {
             position: fixed;
             top: 0;
@@ -32,6 +32,7 @@
             overflow: hidden;
             pointer-events: none;
             z-index: -1;
+            opacity: 0.1;
         }
         
         .bg-decoration::before {
@@ -41,8 +42,8 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle at 20% 50%, rgba(52, 152, 219, 0.05) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 80%, rgba(46, 204, 113, 0.05) 0%, transparent 50%);
+            background: radial-gradient(circle at 20% 50%, rgba(241, 196, 15, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(241, 196, 15, 0.1) 0%, transparent 50%);
             animation: bgFloat 20s ease-in-out infinite alternate;
         }
         
@@ -58,16 +59,16 @@
             z-index: 1;
         }
         
-        /* الهيدر */
         .header {
             text-align: center;
             margin-bottom: 30px;
             padding: 30px 20px;
-            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            background: #000000;
             border-radius: 24px;
-            box-shadow: 0 20px 60px rgba(52, 152, 219, 0.3);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
             position: relative;
             overflow: hidden;
+            border: 2px solid #f1c40f;
         }
         
         .header::before {
@@ -77,7 +78,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 60%);
+            background: radial-gradient(circle at 50% 50%, rgba(241, 196, 15, 0.15) 0%, transparent 60%);
             animation: shine 3s ease-in-out infinite;
         }
         
@@ -87,37 +88,37 @@
         }
         
         .header h1 { 
-            color: white; 
+            color: #f1c40f;
             font-weight: 800; 
             font-size: 2.2rem; 
             position: relative; 
             z-index: 1; 
-            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
             margin: 0;
         }
         
         .header .subtitle { 
-            color: rgba(255,255,255,0.9); 
+            color: #ffffff;
             font-size: 1.1rem; 
             margin-top: 8px; 
             position: relative; 
             z-index: 1; 
         }
         
-        /* البحث */
         .search-container {
             margin-bottom: 25px;
-            background: white;
+            background: #ffffff;
             padding: 15px 20px;
             border-radius: 16px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
             display: flex;
             align-items: center;
             gap: 12px;
+            border: 1px solid #e0e0e0;
         }
         
         .search-container i {
-            color: #7f8c8d;
+            color: #f1c40f;
             font-size: 1.2rem;
         }
         
@@ -128,26 +129,25 @@
             font-size: 1rem;
             padding: 8px 0;
             background: transparent;
-            color: #2c3e50;
+            color: #000000;
         }
         
         .search-container input::placeholder {
-            color: #bdc3c7;
+            color: #aaaaaa;
         }
         
-        /* قائمة المناطق */
         .section-title {
             display: flex;
             align-items: center;
             gap: 10px;
             margin-bottom: 18px;
-            color: #2c3e50;
+            color: #000000;
             font-weight: 700;
             font-size: 1.3rem;
         }
         
         .section-title i {
-            color: #3498db;
+            color: #f1c40f;
             font-size: 1.4rem;
         }
         
@@ -159,16 +159,16 @@
         }
         
         .region-btn { 
-            background: white;
-            color: #2c3e50; 
-            border: 2px solid transparent; 
+            background: #ffffff;
+            color: #000000; 
+            border: 2px solid #e0e0e0; 
             padding: 16px 12px; 
             border-radius: 16px; 
             font-size: 0.9rem; 
             font-weight: 600; 
             cursor: pointer; 
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03); 
             text-align: center; 
             position: relative;
             overflow: hidden;
@@ -181,7 +181,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            background: #000000;
             opacity: 0;
             transition: opacity 0.3s ease;
             z-index: 0;
@@ -190,7 +190,7 @@
         .region-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            border-color: #3498db;
+            border-color: #f1c40f;
         }
         
         .region-btn:active { 
@@ -198,31 +198,33 @@
         }
         
         .region-btn.selected {
-            border-color: #3498db;
-            color: white;
-            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
-            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.3);
+            border-color: #000000;
+            color: #ffffff;
+            background: #000000;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
         }
         
-        .region-btn.selected::before {
-            opacity: 0;
+        .region-btn.selected .region-icon {
+             filter: drop-shadow(0 0 5px #f1c40f);
         }
         
         .region-btn .region-icon {
             display: block;
             font-size: 1.5rem;
             margin-bottom: 6px;
+            position: relative;
+            z-index: 1;
         }
         
-        /* قائمة الوضعيات */
         .position-list { 
-            background: white; 
+            background: #ffffff; 
             border-radius: 20px; 
             padding: 20px; 
             box-shadow: 0 8px 30px rgba(0,0,0,0.08); 
             margin-bottom: 30px; 
             display: none;
             animation: slideUp 0.4s ease-out;
+            border: 1px solid #f0f0f0;
         }
         
         @keyframes slideUp {
@@ -234,38 +236,44 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 2px solid #f1f2f6;
+            border-bottom: 2px solid #f1c40f;
             padding-bottom: 15px;
             margin-bottom: 18px;
         }
         
         .position-list-header h2 { 
-            color: #2c3e50; 
+            color: #000000; 
             font-size: 1.4rem;
             display: flex;
             align-items: center;
             gap: 10px;
         }
         
+        .position-list-header h2 i {
+            color: #f1c40f;
+        }
+        
         .position-list-header .count {
-            background: #e9ecef;
+            background: #f1c40f;
             padding: 4px 12px;
             border-radius: 20px;
             font-size: 0.85rem;
-            color: #7f8c8d;
+            color: #000000;
+            font-weight: 700;
         }
         
         .position-item { 
-            background: #f8f9fa; 
+            background: #fcfcfc; 
             padding: 16px 20px; 
             border-radius: 14px; 
             margin-bottom: 12px; 
             cursor: pointer; 
             transition: all 0.3s ease; 
-            border-right: 4px solid #3498db;
+            border-right: 4px solid #f1c40f;
             display: flex;
             align-items: center;
             gap: 14px;
+            border: 1px solid #f0f0f0;
         }
         
         .position-item:last-child {
@@ -273,53 +281,62 @@
         }
         
         .position-item:hover {
-            background: #f1f3f5;
+            background: #fff9e6;
             transform: translateX(-5px);
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
         
         .position-item:active { 
-            background: #e9ecef; 
+            background: #fff3cc; 
         }
         
         .position-item.active { 
-            background: linear-gradient(135deg, #eaf2f8 0%, #d4e6f1 100%);
-            border-right-color: #e67e22;
-            box-shadow: 0 4px 15px rgba(230, 126, 34, 0.15);
+            background: #000000;
+            border-right-color: #f1c40f;
+            box-shadow: 0 4px 15px rgba(241, 196, 15, 0.3);
+            border-color: #000000;
         }
         
         .position-item .pos-icon {
-            color: #3498db;
+            color: #f1c40f;
             font-size: 1.2rem;
             width: 32px;
             text-align: center;
         }
         
+        .position-item.active .pos-icon {
+            color: #ffffff;
+        }
+        
         .position-item .pos-name {
             flex: 1;
             font-weight: 600;
-            color: #2c3e50;
+            color: #000000;
+        }
+        
+        .position-item.active .pos-name {
+            color: #ffffff;
         }
         
         .position-item .pos-arrow {
-            color: #bdc3c7;
+            color: #cccccc;
             transition: transform 0.3s ease;
         }
         
         .position-item.active .pos-arrow {
             transform: rotate(90deg);
-            color: #e67e22;
+            color: #f1c40f;
         }
         
-        /* تفاصيل الوضعية */
         .detail-box { 
-            background: white; 
+            background: #ffffff; 
             border-radius: 20px; 
             padding: 25px; 
             box-shadow: 0 8px 30px rgba(0,0,0,0.08); 
             display: none; 
             margin-bottom: 30px;
             animation: fadeIn 0.5s ease-out;
+            border: 2px solid #000000;
         }
         
         @keyframes fadeIn {
@@ -333,22 +350,22 @@
             gap: 12px;
             margin-bottom: 20px;
             padding-bottom: 15px;
-            border-bottom: 2px solid #f1f2f6;
+            border-bottom: 3px solid #f1c40f;
         }
         
         .detail-header h3 { 
-            color: #2c3e50; 
+            color: #000000; 
             font-size: 1.5rem;
             flex: 1;
         }
         
         .detail-header .badge {
-            background: linear-gradient(135deg, #3498db, #2980b9);
-            color: white;
+            background: #f1c40f;
+            color: #000000;
             padding: 4px 16px;
             border-radius: 20px;
             font-size: 0.8rem;
-            font-weight: 600;
+            font-weight: 700;
         }
         
         .detail-images { 
@@ -359,13 +376,14 @@
         }
         
         .detail-images figure { 
-            background: #f8f9fa; 
+            background: #fafafa; 
             border-radius: 16px; 
             padding: 12px; 
             text-align: center; 
             transition: transform 0.3s ease;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             cursor: pointer;
+            border: 1px solid #e0e0e0;
         }
         
         .detail-images figure:hover {
@@ -389,7 +407,7 @@
         .detail-images figcaption { 
             margin-top: 10px; 
             font-weight: 600; 
-            color: #34495e; 
+            color: #000000; 
             font-size: 0.95rem;
             display: flex;
             align-items: center;
@@ -398,23 +416,29 @@
             pointer-events: none;
         }
         
+        .detail-images figcaption i {
+            color: #f1c40f;
+        }
+        
         .detail-info { 
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
             gap: 12px; 
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            background: #f9f9f9;
             padding: 20px; 
             border-radius: 16px; 
             margin: 20px 0; 
+            border: 1px solid #e0e0e0;
         }
         
         .detail-info div { 
-            background: white; 
+            background: #ffffff; 
             padding: 16px; 
             border-radius: 12px; 
             text-align: center; 
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
             transition: transform 0.3s ease;
+            border-bottom: 3px solid #f1c40f;
         }
         
         .detail-info div:hover {
@@ -424,7 +448,7 @@
         .detail-info strong { 
             display: block; 
             font-size: 0.8rem; 
-            color: #7f8c8d; 
+            color: #555555; 
             margin-bottom: 4px;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -433,11 +457,11 @@
         .detail-info span { 
             font-size: 1.2rem; 
             font-weight: 700; 
-            color: #2c3e50; 
+            color: #000000; 
         }
         
         .detail-purpose { 
-            background: linear-gradient(135deg, #fef9e7 0%, #fdf2e9 100%);
+            background: #fffdf5;
             padding: 20px; 
             border-radius: 16px; 
             border-right: 4px solid #f1c40f; 
@@ -445,7 +469,7 @@
         }
         
         .detail-purpose h4 { 
-            color: #7d6608; 
+            color: #000000; 
             margin-bottom: 8px;
             display: flex;
             align-items: center;
@@ -453,13 +477,16 @@
             font-size: 1.1rem;
         }
         
+        .detail-purpose h4 i {
+            color: #f1c40f;
+        }
+        
         .detail-purpose p { 
-            color: #5d4e37; 
+            color: #333333; 
             line-height: 1.8;
             font-size: 0.95rem;
         }
         
-        /* نافذة تكبير الصور - Lightbox */
         .lightbox {
             display: none;
             position: fixed;
@@ -467,7 +494,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.92);
+            background: rgba(0, 0, 0, 0.95);
             z-index: 10000;
             align-items: center;
             justify-content: center;
@@ -501,6 +528,7 @@
             box-shadow: 0 20px 60px rgba(0,0,0,0.5);
             object-fit: contain;
             animation: zoomIn 0.4s ease-out;
+            border: 2px solid #f1c40f;
         }
         
         @keyframes zoomIn {
@@ -509,7 +537,7 @@
         }
         
         .lightbox-content .lightbox-caption {
-            color: white;
+            color: #ffffff;
             margin-top: 15px;
             font-size: 1.1rem;
             font-weight: 600;
@@ -521,9 +549,9 @@
             position: absolute;
             top: -50px;
             right: 0;
-            background: rgba(255,255,255,0.1);
+            background: #f1c40f;
             border: none;
-            color: white;
+            color: #000000;
             font-size: 2rem;
             width: 50px;
             height: 50px;
@@ -533,11 +561,10 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            backdrop-filter: blur(5px);
         }
         
         .lightbox-close:hover {
-            background: rgba(255,255,255,0.2);
+            background: #ffffff;
             transform: rotate(90deg);
         }
         
@@ -545,9 +572,9 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(255,255,255,0.1);
+            background: #f1c40f;
             border: none;
-            color: white;
+            color: #000000;
             font-size: 2.5rem;
             width: 50px;
             height: 50px;
@@ -557,11 +584,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            backdrop-filter: blur(5px);
+            font-weight: bold;
         }
         
         .lightbox-nav:hover {
-            background: rgba(255,255,255,0.25);
+            background: #ffffff;
             transform: translateY(-50%) scale(1.1);
         }
         
@@ -578,28 +605,29 @@
             bottom: -40px;
             left: 50%;
             transform: translateX(-50%);
-            color: rgba(255,255,255,0.6);
+            color: #f1c40f;
             font-size: 0.9rem;
         }
         
-        /* تذييل الصفحة */
         .footer { 
             text-align: center; 
             margin-top: 40px; 
             padding: 30px 20px; 
-            background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
+            background: #000000;
             border-radius: 20px;
-            color: white;
+            color: #ffffff;
+            border: 2px solid #f1c40f;
         }
         
         .footer .credit { 
             font-size: 1.1rem;
             font-weight: 700;
             margin-bottom: 10px;
+            line-height: 1.8;
         }
         
         .footer .credit strong {
-            color: #3498db;
+            color: #f1c40f;
         }
         
         .footer .social-links {
@@ -611,22 +639,22 @@
         }
         
         .footer .social-links a {
-            color: white;
+            color: #000000;
             text-decoration: none;
-            background: rgba(255,255,255,0.1);
+            background: #f1c40f;
             padding: 10px 20px;
             border-radius: 30px;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
             gap: 8px;
-            font-weight: 600;
+            font-weight: 700;
         }
         
         .footer .social-links a:hover {
-            background: rgba(255,255,255,0.2);
+            background: #ffffff;
             transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px rgba(241, 196, 15, 0.4);
         }
         
         .footer .social-links i {
@@ -636,24 +664,23 @@
         .footer .coop {
             margin-top: 15px;
             padding-top: 15px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            color: #bdc3c7;
+            border-top: 1px solid rgba(241, 196, 15, 0.3);
+            color: #dddddd;
         }
         
         .footer .coop strong {
-            color: #2ecc71;
+            color: #f1c40f;
         }
         
-        /* رسائل */
         .empty-state {
             text-align: center;
             padding: 30px 20px;
-            color: #7f8c8d;
+            color: #777777;
         }
         
         .empty-state i {
             font-size: 3rem;
-            color: #bdc3c7;
+            color: #f1c40f;
             margin-bottom: 10px;
             display: block;
         }
@@ -661,7 +688,7 @@
         .loading {
             text-align: center;
             padding: 40px;
-            color: #7f8c8d;
+            color: #777777;
         }
         
         .loading i {
@@ -669,6 +696,7 @@
             animation: spin 1s linear infinite;
             display: block;
             margin-bottom: 10px;
+            color: #f1c40f;
         }
         
         @keyframes spin {
@@ -676,7 +704,6 @@
             to { transform: rotate(360deg); }
         }
         
-        /* متجاوب */
         @media (max-width: 768px) {
             .header h1 { font-size: 1.6rem; }
             .header .subtitle { font-size: 0.9rem; }
@@ -752,7 +779,7 @@
     <div class="position-list" id="positionList">
         <div class="position-list-header">
             <h2>
-                <i class="fas fa-list-ul" style="color:#3498db;"></i>
+                <i class="fas fa-list-ul"></i>
                 <span id="regionTitle">الوضعيات</span>
             </h2>
             <span class="count" id="positionCount">0</span>
@@ -773,7 +800,7 @@
 
     <!-- التذييل -->
     <div class="footer">
-        <p class="credit">تم تصميم هذا الموقع من قبل التدريسي <strong>مجتبى كريم</strong></p>
+        <p class="credit">تم تصميم هذا الموقع من قبل التدريسي <strong>مجتبى كريم</strong> و تقني الاشعة <strong>نور الزهراء علي عبد</strong></p>
         <div class="social-links">
             <a href="https://www.instagram.com/mojtabakr1.sc?igsh=bXR0YjM1MzJ0NmE0" target="_blank">
                 <i class="fab fa-instagram"></i> @mojtabakr1.sc
@@ -932,7 +959,7 @@
                 <div class="empty-state">
                     <i class="fas fa-inbox"></i>
                     <p>لا توجد وضعيات لهذه المنطقة بعد.</p>
-                    <p style="font-size:0.9rem;color:#bdc3c7;">يمكنك إضافة وضعيات من صفحة الإدارة</p>
+                    <p style="font-size:0.9rem;color:#aaaaaa;">يمكنك إضافة وضعيات من صفحة الإدارة</p>
                 </div>
             `;
             return;
@@ -984,17 +1011,17 @@
             <figure>
                 <img src="${realImgSrc}" alt="صورة حقيقية - ${pos.name}" onerror="this.src='${placeholder}'" onclick="openLightbox(0)">
                 <figcaption>
-                    <i class="fas fa-camera" style="color:#3498db;"></i>
+                    <i class="fas fa-camera"></i>
                     صورة حقيقية
-                    <span style="font-size:0.8rem;color:#bdc3c7;font-weight:400;"> (انقر للتكبير)</span>
+                    <span style="font-size:0.8rem;color:#aaaaaa;font-weight:400;"> (انقر للتكبير)</span>
                 </figcaption>
             </figure>
             <figure>
                 <img src="${xrayImgSrc}" alt="صورة شعاعية - ${pos.name}" onerror="this.src='${placeholder}'" onclick="openLightbox(1)">
                 <figcaption>
-                    <i class="fas fa-x-ray" style="color:#e74c3c;"></i>
+                    <i class="fas fa-x-ray" style="color:#f1c40f;"></i>
                     صورة شعاعية
-                    <span style="font-size:0.8rem;color:#bdc3c7;font-weight:400;"> (انقر للتكبير)</span>
+                    <span style="font-size:0.8rem;color:#aaaaaa;font-weight:400;"> (انقر للتكبير)</span>
                 </figcaption>
             </figure>
         `;
@@ -1022,7 +1049,7 @@
         // الغرض
         detailPurpose.innerHTML = `
             <h4>
-                <i class="fas fa-bullseye" style="color:#f1c40f;"></i>
+                <i class="fas fa-bullseye"></i>
                 الغرض من الوضعية
             </h4>
             <p>${pos.purpose || 'لا يوجد وصف للغرض.'}</p>
@@ -1161,8 +1188,8 @@
         }, (error) => {
             console.error('خطأ في تحميل البيانات:', error);
             positionsContainer.innerHTML = `
-                <div class="empty-state" style="color:#e74c3c;">
-                    <i class="fas fa-exclamation-triangle" style="color:#e74c3c;"></i>
+                <div class="empty-state" style="color:#000000;">
+                    <i class="fas fa-exclamation-triangle" style="color:#f1c40f;"></i>
                     <p>⚠️ حدث خطأ في تحميل البيانات. حاول لاحقاً.</p>
                 </div>
             `;
