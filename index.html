@@ -1,318 +1,1546 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>الموقع تحت الصيانة</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <title>وضعيات التصوير الشعاعي</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome للايقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Reset & base */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+            font-family: 'Cairo', sans-serif;
         }
-
-        body {
+        
+        body { 
+            background: #ffffff;
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: #0b0b0b;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            padding: 1.5rem;
-            margin: 0;
+            padding: 20px;
+            color: #000000;
         }
-
-        /* Main card */
-        .maintenance-card {
-            max-width: 720px;
-            width: 100%;
-            background: #1a1a1a;
-            border-radius: 2.5rem;
-            padding: 3.5rem 2.5rem;
-            text-align: center;
-            border: 3px solid #f5c500;
-            box-shadow: 0 20px 60px rgba(245, 197, 0, 0.15),
-                0 0 0 1px rgba(245, 197, 0, 0.1) inset;
-            position: relative;
+        
+        .bg-decoration {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
             overflow: hidden;
-            transition: transform 0.3s ease;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.1;
         }
-
-        .maintenance-card:hover {
-            transform: scale(1.01);
-        }
-
-        /* Decorative stripes */
-        .maintenance-card::before {
+        
+        .bg-decoration::before {
             content: '';
             position: absolute;
             top: -50%;
             left: -50%;
             width: 200%;
             height: 200%;
-            background: repeating-linear-gradient(45deg,
-                    transparent,
-                    transparent 20px,
-                    rgba(245, 197, 0, 0.03) 20px,
-                    rgba(245, 197, 0, 0.03) 40px);
-            pointer-events: none;
-            z-index: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(241, 196, 15, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(241, 196, 15, 0.1) 0%, transparent 50%);
+            animation: bgFloat 20s ease-in-out infinite alternate;
         }
-
-        /* All content above the pseudo */
-        .maintenance-card>* {
+        
+        @keyframes bgFloat {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(2%, 2%) rotate(3deg); }
+        }
+        
+        .container { 
+            max-width: 900px; 
+            margin: 0 auto;
             position: relative;
             z-index: 1;
         }
-
-        /* Icon / Gear */
-        .icon-wrapper {
-            display: inline-block;
-            background: #f5c500;
-            border-radius: 50%;
-            padding: 1.5rem;
-            margin-bottom: 1.8rem;
-            box-shadow: 0 0 0 4px #1a1a1a, 0 0 0 7px #f5c500;
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 30px 20px;
+            background: #000000;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid #f1c40f;
         }
-
-        .icon-wrapper svg {
-            display: block;
-            width: 64px;
-            height: 64px;
-            fill: #0b0b0b;
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 50% 50%, rgba(241, 196, 15, 0.15) 0%, transparent 60%);
+            animation: shine 3s ease-in-out infinite;
         }
-
-        /* Headline */
-        h1 {
-            font-size: 2.8rem;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            color: #f5c500;
-            margin-bottom: 0.5rem;
-            text-shadow: 0 0 20px rgba(245, 197, 0, 0.2);
+        
+        @keyframes shine {
+            0% { transform: translate(-30%, -30%); }
+            100% { transform: translate(30%, 30%); }
         }
-
-        /* Sub headline */
-        .sub-headline {
-            font-size: 1.15rem;
-            font-weight: 500;
+        
+        .header h1 { 
+            color: #f1c40f;
+            font-weight: 800; 
+            font-size: 2.2rem; 
+            position: relative; 
+            z-index: 1; 
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            margin: 0;
+        }
+        
+        .header .subtitle { 
             color: #ffffff;
-            margin-bottom: 1.8rem;
-            line-height: 1.7;
-            opacity: 0.9;
+            font-size: 1.1rem; 
+            margin-top: 8px; 
+            position: relative; 
+            z-index: 1; 
         }
-
-        .sub-headline span {
-            color: #f5c500;
+        
+        .search-container {
+            margin-bottom: 25px;
+            background: #ffffff;
+            padding: 15px 20px;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .search-container i {
+            color: #f1c40f;
+            font-size: 1.2rem;
+        }
+        
+        .search-container input {
+            flex: 1;
+            border: none;
+            outline: none;
+            font-size: 1rem;
+            padding: 8px 0;
+            background: transparent;
+            color: #000000;
+        }
+        
+        .search-container input::placeholder {
+            color: #aaaaaa;
+        }
+        
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 18px;
+            color: #000000;
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+        
+        .section-title i {
+            color: #f1c40f;
+            font-size: 1.4rem;
+        }
+        
+        .region-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); 
+            gap: 14px; 
+            margin-bottom: 30px; 
+        }
+        
+        .region-btn { 
+            background: #ffffff;
+            color: #000000; 
+            border: 2px solid #e0e0e0; 
+            padding: 16px 12px; 
+            border-radius: 16px; 
+            font-size: 0.9rem; 
+            font-weight: 600; 
+            cursor: pointer; 
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03); 
+            text-align: center; 
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .region-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #000000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 0;
+        }
+        
+        .region-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border-color: #f1c40f;
+        }
+        
+        .region-btn:active { 
+            transform: scale(0.95); 
+        }
+        
+        .region-btn.selected {
+            border-color: #000000;
+            color: #ffffff;
+            background: #000000;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+        
+        .region-btn.selected .region-icon {
+             filter: drop-shadow(0 0 5px #f1c40f);
+        }
+        
+        .region-btn .region-icon {
+            display: block;
+            font-size: 1.5rem;
+            margin-bottom: 6px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .position-list { 
+            background: #ffffff; 
+            border-radius: 20px; 
+            padding: 20px; 
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08); 
+            margin-bottom: 30px; 
+            display: none;
+            animation: slideUp 0.4s ease-out;
+            border: 1px solid #f0f0f0;
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .position-list-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #f1c40f;
+            padding-bottom: 15px;
+            margin-bottom: 18px;
+        }
+        
+        .position-list-header h2 { 
+            color: #000000; 
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .position-list-header h2 i {
+            color: #f1c40f;
+        }
+        
+        .position-list-header .count {
+            background: #f1c40f;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #000000;
             font-weight: 700;
         }
-
-        /* Divider */
-        .divider {
-            width: 80px;
-            height: 4px;
-            background: #f5c500;
-            margin: 1.5rem auto 1.8rem auto;
-            border-radius: 4px;
+        
+        .position-item { 
+            background: #fcfcfc; 
+            padding: 16px 20px; 
+            border-radius: 14px; 
+            margin-bottom: 12px; 
+            cursor: pointer; 
+            transition: all 0.3s ease; 
+            border-right: 4px solid #f1c40f;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            border: 1px solid #f0f0f0;
         }
-
-        /* Message body */
-        .message {
-            font-size: 1.05rem;
-            color: #dddddd;
+        
+        .position-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .position-item:hover {
+            background: #fff9e6;
+            transform: translateX(-5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        
+        .position-item:active { 
+            background: #fff3cc; 
+        }
+        
+        .position-item.active { 
+            background: #000000;
+            border-right-color: #f1c40f;
+            box-shadow: 0 4px 15px rgba(241, 196, 15, 0.3);
+            border-color: #000000;
+        }
+        
+        .position-item .pos-icon {
+            color: #f1c40f;
+            font-size: 1.2rem;
+            width: 32px;
+            text-align: center;
+        }
+        
+        .position-item.active .pos-icon {
+            color: #ffffff;
+        }
+        
+        .position-item .pos-name {
+            flex: 1;
+            font-weight: 600;
+            color: #000000;
+        }
+        
+        .position-item.active .pos-name {
+            color: #ffffff;
+        }
+        
+        .position-item .pos-arrow {
+            color: #cccccc;
+            transition: transform 0.3s ease;
+        }
+        
+        .position-item.active .pos-arrow {
+            transform: rotate(90deg);
+            color: #f1c40f;
+        }
+        
+        .detail-box { 
+            background: #ffffff; 
+            border-radius: 20px; 
+            padding: 25px; 
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08); 
+            display: none; 
+            margin-bottom: 30px;
+            animation: fadeIn 0.5s ease-out;
+            border: 2px solid #000000;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        .detail-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #f1c40f;
+        }
+        
+        .detail-header h3 { 
+            color: #000000; 
+            font-size: 1.5rem;
+            flex: 1;
+        }
+        
+        .detail-header .badge {
+            background: #f1c40f;
+            color: #000000;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+        
+        .detail-images { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr;
+            gap: 20px; 
+            margin: 20px 0;
+        }
+        
+        .detail-images figure { 
+            background: #fafafa; 
+            border-radius: 16px; 
+            padding: 12px; 
+            text-align: center; 
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            cursor: pointer;
+            border: 1px solid #e0e0e0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .detail-images figure:hover {
+            transform: scale(1.03);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+        }
+        
+        .detail-images figure:active {
+            transform: scale(0.97);
+        }
+        
+        .detail-images img { 
+            width: 100%; 
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            cursor: pointer;
+            display: block;
+        }
+        
+        .detail-images figcaption { 
+            margin-top: 10px; 
+            font-weight: 600; 
+            color: #000000; 
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            pointer-events: none;
+        }
+        
+        .detail-images figcaption i {
+            color: #f1c40f;
+        }
+        
+        .detail-info { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px; 
+            background: #f9f9f9;
+            padding: 20px; 
+            border-radius: 16px; 
+            margin: 20px 0; 
+            border: 1px solid #e0e0e0;
+        }
+        
+        .detail-info div { 
+            background: #ffffff; 
+            padding: 16px; 
+            border-radius: 12px; 
+            text-align: center; 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+            border-bottom: 3px solid #f1c40f;
+        }
+        
+        .detail-info div:hover {
+            transform: translateY(-2px);
+        }
+        
+        .detail-info strong { 
+            display: block; 
+            font-size: 0.8rem; 
+            color: #555555; 
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .detail-info span { 
+            font-size: 1.2rem; 
+            font-weight: 700; 
+            color: #000000; 
+        }
+        
+        .detail-purpose { 
+            background: #fffdf5;
+            padding: 20px; 
+            border-radius: 16px; 
+            border-right: 4px solid #f1c40f; 
+            margin-top: 15px; 
+        }
+        
+        .detail-purpose h4 { 
+            color: #000000; 
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.1rem;
+        }
+        
+        .detail-purpose h4 i {
+            color: #f1c40f;
+        }
+        
+        .detail-purpose p { 
+            color: #333333; 
             line-height: 1.8;
-            margin-bottom: 2.2rem;
-            background: rgba(255, 255, 255, 0.04);
-            padding: 1.2rem 1.8rem;
-            border-radius: 1.2rem;
-            border: 1px solid rgba(245, 197, 0, 0.15);
+            font-size: 0.95rem;
+        }
+        
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            animation: lightboxIn 0.3s ease-out;
+        }
+        
+        @keyframes lightboxIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        .lightbox.show {
+            display: flex;
+        }
+        
+        .lightbox-content {
+            max-width: 95%;
+            max-height: 90vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            object-fit: contain;
+            animation: zoomIn 0.4s ease-out;
+            border: 2px solid #f1c40f;
+            display: block;
+        }
+        
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        .lightbox-content .lightbox-caption {
+            color: #ffffff;
+            margin-top: 15px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-align: center;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: #f1c40f;
+            border: none;
+            color: #000000;
+            font-size: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 20;
+        }
+        
+        .lightbox-close:hover {
+            background: #ffffff;
+            transform: rotate(90deg);
+        }
+        
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #f1c40f;
+            border: none;
+            color: #000000;
+            font-size: 2.5rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            z-index: 20;
+        }
+        
+        .lightbox-nav:hover {
+            background: #ffffff;
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .lightbox-nav.prev {
+            left: -60px;
+        }
+        
+        .lightbox-nav.next {
+            right: -60px;
+        }
+        
+        .lightbox-counter {
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #f1c40f;
+            font-size: 0.9rem;
+            z-index: 20;
         }
 
-        .message strong {
-            color: #f5c500;
+        /* نمط العلامة المائية للـ Lightbox */
+        .watermark-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            display: flex;
+            flex-wrap: wrap;
+            align-content: center;
+            justify-content: center;
+            transform: rotate(-20deg);
+            opacity: 0.2;
+            font-size: 22px;
+            font-weight: bold;
+            color: #ffffff;
+            z-index: 5;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+        .watermark-pattern span {
+            margin: 15px 20px;
+            white-space: nowrap;
+        }
+        
+        .footer { 
+            text-align: center; 
+            margin-top: 40px; 
+            padding: 30px 20px; 
+            background: #000000;
+            border-radius: 20px;
+            color: #ffffff;
+            border: 2px solid #f1c40f;
+        }
+        
+        .footer .credit { 
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1.8;
+        }
+        
+        .footer .credit strong {
+            color: #f1c40f;
+        }
+        
+        .footer .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+        
+        .footer .social-links a {
+            color: #000000;
+            text-decoration: none;
+            background: #f1c40f;
+            padding: 10px 20px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
             font-weight: 700;
         }
-
-        /* Status indicator */
-        .status {
+        
+        .footer .social-links a:hover {
+            background: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(241, 196, 15, 0.4);
+        }
+        
+        .footer .social-links i {
+            font-size: 1.2rem;
+        }
+        
+        .footer .coop {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(241, 196, 15, 0.3);
+            color: #dddddd;
+        }
+        
+        .footer .coop strong {
+            color: #f1c40f;
+        }
+        
+        /* أنماط قسم اختبار نفسك */
+        .quiz-section {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 25px;
+            margin-top: 30px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            border: 2px solid #000000;
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+        .quiz-section.show {
+            display: block;
+        }
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .quiz-header h2 {
+            color: #000000;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .quiz-header h2 i {
+            color: #f1c40f;
+        }
+        .quiz-region-select {
+            padding: 10px 15px;
+            border-radius: 12px;
+            border: 2px solid #e0e0e0;
+            font-size: 1rem;
+            font-weight: 600;
+            background: #ffffff;
+            cursor: pointer;
+            outline: none;
+            transition: border 0.3s;
+            min-width: 200px;
+        }
+        .quiz-region-select:focus {
+            border-color: #f1c40f;
+        }
+        .quiz-score {
+            background: #f1c40f;
+            color: #000000;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+        .quiz-question-area {
+            text-align: center;
+        }
+        .quiz-image-container {
+            position: relative;
+            display: inline-block;
+            max-width: 100%;
+            margin-bottom: 20px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .quiz-image-container img {
+            width: 100%;
+            max-height: 350px;
+            object-fit: contain;
+            display: block;
+            border-radius: 16px;
+        }
+        .quiz-choices {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .quiz-choice-btn {
+            background: #ffffff;
+            border: 2px solid #e0e0e0;
+            padding: 15px 20px;
+            border-radius: 14px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            color: #000000;
+        }
+        .quiz-choice-btn:hover {
+            border-color: #f1c40f;
+            background: #fff9e6;
+            transform: translateY(-2px);
+        }
+        .quiz-choice-btn.correct {
+            background: #27ae60;
+            color: #ffffff;
+            border-color: #27ae60;
+        }
+        .quiz-choice-btn.wrong {
+            background: #e74c3c;
+            color: #ffffff;
+            border-color: #e74c3c;
+        }
+        .quiz-choice-btn:disabled {
+            pointer-events: none;
+            opacity: 0.8;
+        }
+        .quiz-feedback {
+            margin-top: 15px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            min-height: 30px;
+        }
+        .quiz-next-btn {
+            background: #000000;
+            color: #f1c40f;
+            border: 2px solid #f1c40f;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
-            gap: 0.6rem;
-            background: #f5c500;
-            color: #0b0b0b;
+            gap: 8px;
+        }
+        .quiz-next-btn:hover {
+            background: #f1c40f;
+            color: #000000;
+        }
+        .quiz-empty {
+            text-align: center;
+            padding: 30px;
+            color: #777777;
+        }
+        .quiz-empty i {
+            font-size: 3rem;
+            color: #f1c40f;
+            margin-bottom: 10px;
+        }
+        .start-quiz-btn {
+            background: #f1c40f;
+            color: #000000;
+            border: none;
+            padding: 15px 35px;
+            border-radius: 30px;
+            font-size: 1.2rem;
             font-weight: 700;
-            font-size: 0.9rem;
-            padding: 0.6rem 1.6rem;
-            border-radius: 40px;
-            letter-spacing: 0.3px;
-            text-transform: uppercase;
-            margin-bottom: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(241,196,15,0.3);
         }
-
-        .status .dot {
-            display: inline-block;
-            width: 10px;
-            height: 10px;
-            background: #0b0b0b;
-            border-radius: 50%;
-            animation: pulse-dot 1.6s ease-in-out infinite;
+        .start-quiz-btn:hover {
+            background: #000000;
+            color: #f1c40f;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
         }
-
-        @keyframes pulse-dot {
-            0%,
-            100% {
-                opacity: 1;
-                transform: scale(1);
+        
+        @media (max-width: 768px) {
+            .quiz-choices {
+                grid-template-columns: 1fr;
             }
-            50% {
-                opacity: 0.3;
-                transform: scale(0.7);
+            .quiz-header {
+                flex-direction: column;
+                align-items: flex-start;
             }
-        }
-
-        /* Progress bar */
-        .progress-track {
-            width: 100%;
-            height: 6px;
-            background: #2a2a2a;
-            border-radius: 6px;
-            overflow: hidden;
-            margin-top: 0.8rem;
-        }
-
-        .progress-fill {
-            height: 100%;
-            width: 62%;
-            background: linear-gradient(90deg, #f5c500, #ffdd33);
-            border-radius: 6px;
-            animation: progress-pulse 2.4s ease-in-out infinite;
-        }
-
-        @keyframes progress-pulse {
-            0%,
-            100% {
-                width: 62%;
-                opacity: 1;
-            }
-            50% {
-                width: 78%;
-                opacity: 0.8;
-            }
-        }
-
-        /* Footer */
-        .footer {
-            margin-top: 2.2rem;
-            font-size: 0.85rem;
-            color: #888888;
-            letter-spacing: 0.3px;
-        }
-
-        .footer a {
-            color: #f5c500;
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.2s;
-        }
-
-        .footer a:hover {
-            color: #ffffff;
-            text-decoration: underline;
-        }
-
-        /* Responsive */
-        @media (max-width: 540px) {
-            .maintenance-card {
-                padding: 2.2rem 1.5rem;
-                border-radius: 1.8rem;
-            }
-
-            h1 {
-                font-size: 2rem;
-            }
-
-            .icon-wrapper {
-                padding: 1rem;
-            }
-
-            .icon-wrapper svg {
-                width: 44px;
-                height: 44px;
-            }
-
-            .sub-headline {
-                font-size: 1rem;
-            }
-
-            .message {
-                font-size: 0.95rem;
-                padding: 1rem 1.2rem;
-            }
-
-            .status {
-                font-size: 0.8rem;
-                padding: 0.5rem 1.2rem;
-            }
-        }
-
-        @media (max-width: 400px) {
-            h1 {
-                font-size: 1.6rem;
-            }
-            .maintenance-card {
-                padding: 1.8rem 1.2rem;
+            .lightbox-nav.prev { left: -20px; }
+            .lightbox-nav.next { right: -20px; }
+            .watermark-pattern {
+                font-size: 16px;
             }
         }
     </style>
 </head>
 <body>
 
-    <div class="maintenance-card">
+<div class="bg-decoration"></div>
 
-        <!-- Gear icon -->
-        <div class="icon-wrapper">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2C10.6868 2 9.38642 2.25866 8.17317 2.7612C6.95991 3.26375 5.85752 4.00035 4.92893 4.92893C3.05357 6.8043 2 9.34784 2 12C2 14.6522 3.05357 17.1957 4.92893 19.0711C5.85752 19.9997 6.95991 20.7363 8.17317 21.2388C9.38642 21.7413 10.6868 22 12 22C14.6522 22 17.1957 20.9464 19.0711 19.0711C20.9464 17.1957 22 14.6522 22 12C22 9.34784 20.9464 6.8043 19.0711 4.92893C18.1425 4.00035 17.0401 3.26375 15.8268 2.7612C14.6136 2.25866 13.3132 2 12 2ZM12 4C14.1217 4 16.1566 4.84285 17.6569 6.34315C19.1571 7.84344 20 9.87827 20 12C20 14.1217 19.1571 16.1566 17.6569 17.6569C16.1566 19.1571 14.1217 20 12 20C9.87827 20 7.84344 19.1571 6.34315 17.6569C4.84285 16.1566 4 14.1217 4 12C4 9.87827 4.84285 7.84344 6.34315 6.34315C7.84344 4.84285 9.87827 4 12 4ZM12 6.5C11.3078 6.5 10.6311 6.69427 10.0555 7.05808C9.47995 7.4219 9.03338 7.93711 8.76642 8.5436C8.49947 9.15009 8.4241 9.82025 8.54908 10.4676C8.67406 11.115 8.99469 11.7068 9.46447 12.1765C9.93425 12.6463 10.526 12.9669 11.1734 13.0919C11.8208 13.2169 12.4909 13.1415 13.0974 12.8746C13.7039 12.6076 14.2191 12.161 14.5829 11.5855C14.9467 11.0099 15.141 10.3332 15.141 9.641C15.141 8.70793 14.7696 7.81307 14.1095 7.15296C13.4494 6.49284 12.5545 6.12147 11.6214 6.12147L12 6.5ZM12 8.5C12.3025 8.5 12.598 8.58387 12.8522 8.74105C13.1064 8.89822 13.3085 9.12268 13.434 9.38987C13.5595 9.65707 13.6031 9.95577 13.5604 10.2484C13.5177 10.5411 13.3906 10.8154 13.1956 11.0393C13.0005 11.2633 12.746 11.4281 12.4602 11.5141C12.1744 11.6001 11.8692 11.6036 11.5816 11.5242C11.294 11.4448 11.0363 11.286 10.8367 11.0669C10.6371 10.8477 10.5043 10.5767 10.4554 10.2855L12 8.5Z" />
-            </svg>
-        </div>
-
-        <!-- Status badge -->
-        <div class="status">
-            <span class="dot"></span>
-            جارٍ العمل على التحسين
-        </div>
-
-        <!-- Headline -->
-        <h1>الموقع تحت الصيانة</h1>
-
-        <!-- Sub headline -->
-        <p class="sub-headline">
-            نعمل على <span>تطوير</span> تجربتك &nbsp;·&nbsp; سنعود قريباً
-        </p>
-
-        <!-- Divider -->
-        <div class="divider"></div>
-
-        <!-- Message -->
-        <div class="message">
-            <strong>⚙️</strong> نعتذر عن الإزعاج، ولكننا نقوم حالياً
-            <strong>بتحديث</strong> الموقع وإجراء تحسينات تقنية
-            <strong>لخدمتك</strong> بشكل أفضل.<br />
-            توقع عودتنا خلال <strong>ساعات</strong> قليلة.
-        </div>
-
-        <!-- Progress indicator -->
-        <div class="progress-track">
-            <div class="progress-fill"></div>
-        </div>
-
-        <!-- Footer -->
-        <div class="footer">
-            &nbsp;·&nbsp; شكراً لتفهمك
-        </div>
-
+<div class="container">
+    <!-- الهيدر -->
+    <div class="header">
+        <h1>وضعيات التصوير الشعاعي</h1>
+        <p class="subtitle">دليل شامل لوضعيات التصوير الشعاعي لجميع مناطق الجسم</p>
     </div>
+
+    <!-- بحث -->
+    <div class="search-container">
+        <i class="fas fa-search"></i>
+        <input type="text" id="searchInput" placeholder="ابحث عن منطقة أو وضعية ...">
+    </div>
+
+    <!-- قائمة المناطق -->
+    <div class="section-title">
+        <i class="fas fa-map-marker-alt"></i>
+        <span>اختر المنطقة</span>
+    </div>
+    <div class="region-grid" id="regionGrid"></div>
+
+    <!-- قائمة الوضعيات -->
+    <div class="position-list" id="positionList">
+        <div class="position-list-header">
+            <h2>
+                <i class="fas fa-list-ul"></i>
+                <span id="regionTitle">الوضعيات</span>
+            </h2>
+            <span class="count" id="positionCount">0</span>
+        </div>
+        <div id="positionsContainer"></div>
+    </div>
+
+    <!-- تفاصيل الوضعية -->
+    <div class="detail-box" id="detailBox">
+        <div class="detail-header">
+            <h3 id="detailTitle">تفاصيل الوضعية</h3>
+            <span class="badge" id="detailBadge">وضعية</span>
+        </div>
+        <div class="detail-images" id="detailImages"></div>
+        <div class="detail-info" id="detailInfo"></div>
+        <div class="detail-purpose" id="detailPurpose"></div>
+    </div>
+
+    <!-- قسم اختبر نفسك -->
+    <div class="quiz-section" id="quizSection">
+        <div class="quiz-header">
+            <h2><i class="fas fa-question-circle"></i> اختبر نفسك</h2>
+            <select class="quiz-region-select" id="quizRegionSelect">
+                <option value="">-- اختر المنطقة --</option>
+            </select>
+            <div class="quiz-score" id="quizScore">0 / 0</div>
+        </div>
+        <div id="quizContent">
+            <!-- سيتم ملؤه ديناميكياً -->
+        </div>
+    </div>
+
+    <!-- التذييل -->
+    <div class="footer">
+        <p class="credit">تم تصميم هذا الموقع من قبل التدريسي <strong>مجتبى كريم</strong> و تقني الاشعة <strong>نور الزهراء علي عبد</strong></p>
+        <div class="social-links">
+            <a href="https://www.instagram.com/mojtabakr1.sc?igsh=bXR0YjM1MzJ0NmE0" target="_blank">
+                <i class="fab fa-instagram"></i> @mojtabakr1.sc
+            </a>
+        </div>
+        <div class="coop">
+            بالتعاون مع أكاديمية <strong>ONERAY</strong> التعليمية
+            <div class="social-links" style="margin-top: 10px;">
+                <a href="https://www.instagram.com/oneray.academy?igsh=Y29vd3ZsbWV2bncy" target="_blank">
+                    <i class="fab fa-instagram"></i> @oneray.academy
+                </a>
+            </div>
+        </div>
+        <button class="start-quiz-btn" id="startQuizBtn">
+            <i class="fas fa-play-circle"></i> اختبر نفسك
+        </button>
+    </div>
+</div>
+
+<!-- Lightbox لتكبير الصور -->
+<div class="lightbox" id="lightbox">
+    <div class="lightbox-content">
+        <button class="lightbox-close" id="lightboxClose">
+            <i class="fas fa-times"></i>
+        </button>
+        <button class="lightbox-nav prev" id="lightboxPrev">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+        <button class="lightbox-nav next" id="lightboxNext">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <img id="lightboxImage" src="" alt="صورة مكبرة">
+        <div class="watermark-pattern" id="watermarkPattern"></div>
+        <div class="lightbox-caption" id="lightboxCaption"></div>
+        <div class="lightbox-counter" id="lightboxCounter"></div>
+    </div>
+</div>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
+    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-database.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyDnNv3tekrHervtMjYk2nv0vluN83dTOrw",
+        authDomain: "xraystop-d13d3.firebaseapp.com",
+        databaseURL: "https://xraystop-d13d3-default-rtdb.firebaseio.com",
+        projectId: "xraystop-d13d3",
+        storageBucket: "xraystop-d13d3.firebasestorage.app",
+        messagingSenderId: "597257727564",
+        appId: "1:597257727564:web:198421df2f0b5206b04ee9",
+        measurementId: "G-QV6RQ3JR3Y"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    const WATERMARK_TEXT = "اكاديمية ONERAY التعليمية";
+
+    const regions = [
+        { name: "SKULL", icon: "🧠" },
+        { name: "MANDIBLE", icon: "🦷" },
+        { name: "CERVICAL SPINE", icon: "🦴" },
+        { name: "SHOULDER", icon: "💪" },
+        { name: "HUMERUS", icon: "🦴" },
+        { name: "ELBOW", icon: "💪" },
+        { name: "FOREARM", icon: "🖐️" },
+        { name: "WRIST", icon: "✋" },
+        { name: "HAND", icon: "🤚" },
+        { name: "CHEST", icon: "🫁" },
+        { name: "THORACIC VERTEBRAE", icon: "🦴" },
+        { name: "ABDOMEN", icon: "🩺" },
+        { name: "LUMBOSACRAL SPINE", icon: "🦴" },
+        { name: "PELVIS", icon: "🦴" },
+        { name: "SACRUM COCCYX", icon: "🦴" },
+        { name: "FEMUR", icon: "🦵" },
+        { name: "KNEE", icon: "🦵" },
+        { name: "PATELLA", icon: "🦵" },
+        { name: "LEG", icon: "🦵" },
+        { name: "ANKLE", icon: "🦶" },
+        { name: "FOOT", icon: "🦶" }
+    ];
+
+    // عناصر DOM الأساسية
+    const regionGrid = document.getElementById('regionGrid');
+    const positionList = document.getElementById('positionList');
+    const positionsContainer = document.getElementById('positionsContainer');
+    const regionTitle = document.getElementById('regionTitle');
+    const positionCount = document.getElementById('positionCount');
+    const detailBox = document.getElementById('detailBox');
+    const detailTitle = document.getElementById('detailTitle');
+    const detailBadge = document.getElementById('detailBadge');
+    const detailImages = document.getElementById('detailImages');
+    const detailInfo = document.getElementById('detailInfo');
+    const detailPurpose = document.getElementById('detailPurpose');
+    const searchInput = document.getElementById('searchInput');
+    
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightboxImage');
+    const lightboxCaption = document.getElementById('lightboxCaption');
+    const lightboxCounter = document.getElementById('lightboxCounter');
+    const lightboxClose = document.getElementById('lightboxClose');
+    const lightboxPrev = document.getElementById('lightboxPrev');
+    const lightboxNext = document.getElementById('lightboxNext');
+    const watermarkPattern = document.getElementById('watermarkPattern');
+
+    // عناصر الاختبار
+    const startQuizBtn = document.getElementById('startQuizBtn');
+    const quizSection = document.getElementById('quizSection');
+    const quizRegionSelect = document.getElementById('quizRegionSelect');
+    const quizScore = document.getElementById('quizScore');
+    const quizContent = document.getElementById('quizContent');
+
+    let allData = {};
+    let selectedRegion = null;
+    let selectedPosition = null;
+    let searchTimeout = null;
+    let lightboxImages = [];
+    let lightboxIndex = 0;
+
+    // حالة الاختبار
+    let quizQuestions = [];
+    let currentQuestionIndex = 0;
+    let correctCount = 0;
+    let answered = false;
+
+    // دالة إضافة العلامة المائية للصورة
+    function addWatermarkToImage(imgElement, text) {
+        if (!imgElement || !imgElement.src) return;
+        const img = new Image();
+        img.crossOrigin = "Anonymous";
+        img.src = imgElement.src;
+        img.onload = function() {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            const maxWidth = 800;
+            const maxHeight = 600;
+            let width = img.width;
+            let height = img.height;
+            if (width > maxWidth || height > maxHeight) {
+                const ratio = Math.min(maxWidth / width, maxHeight / height);
+                width *= ratio;
+                height *= ratio;
+            }
+            canvas.width = width;
+            canvas.height = height;
+            ctx.drawImage(img, 0, 0, width, height);
+            ctx.save();
+            ctx.globalAlpha = 0.25;
+            ctx.fillStyle = '#000000';
+            ctx.font = 'bold 20px Cairo, sans-serif';
+            ctx.translate(width / 2, height / 2);
+            ctx.rotate(-20 * Math.PI / 180);
+            const textWidth = ctx.measureText(text).width;
+            const stepX = textWidth + 40;
+            const stepY = 60;
+            const cols = Math.ceil(width / stepX) + 2;
+            const rows = Math.ceil(height / stepY) + 2;
+            for (let row = -rows/2; row < rows/2; row++) {
+                for (let col = -cols/2; col < cols/2; col++) {
+                    ctx.fillText(text, col * stepX, row * stepY);
+                }
+            }
+            ctx.restore();
+            imgElement.src = canvas.toDataURL('image/jpeg', 0.9);
+        };
+        img.onerror = function() {
+            console.warn('لم يتمكن من إضافة علامة مائية للصورة:', imgElement.src);
+        };
+    }
+
+    function applyWatermarkToDetailImages() {
+        const images = detailImages.querySelectorAll('img');
+        images.forEach(img => addWatermarkToImage(img, WATERMARK_TEXT));
+    }
+
+    function fillWatermarkPattern() {
+        if (!watermarkPattern) return;
+        const patternWidth = window.innerWidth * 1.5;
+        const patternHeight = window.innerHeight * 1.5;
+        const spanWidth = 200;
+        const spanHeight = 40;
+        const cols = Math.ceil(patternWidth / spanWidth);
+        const rows = Math.ceil(patternHeight / spanHeight);
+        let html = '';
+        for (let i = 0; i < rows; i++) {
+            for (let j = 0; j < cols; j++) {
+                html += `<span>${WATERMARK_TEXT}</span>`;
+            }
+        }
+        watermarkPattern.innerHTML = html;
+    }
+
+    function renderRegions(filter = '') {
+        regionGrid.innerHTML = '';
+        const filteredRegions = regions.filter(r => 
+            r.name.toLowerCase().includes(filter.toLowerCase()) || 
+            r.icon.includes(filter)
+        );
+        filteredRegions.forEach(region => {
+            const btn = document.createElement('button');
+            btn.className = 'region-btn';
+            if (region.name === selectedRegion) btn.classList.add('selected');
+            btn.innerHTML = `<span class="region-icon">${region.icon}</span>${region.name}`;
+            btn.dataset.region = region.name;
+            btn.addEventListener('click', () => selectRegion(region.name, btn));
+            regionGrid.appendChild(btn);
+        });
+    }
+
+    function selectRegion(region, btnElement) {
+        document.querySelectorAll('.region-btn').forEach(b => b.classList.remove('selected'));
+        if (btnElement) btnElement.classList.add('selected');
+        selectedRegion = region;
+        selectedPosition = null;
+        detailBox.style.display = 'none';
+        positionList.style.display = 'block';
+        regionTitle.textContent = `وضعيات ${region}`;
+        const positions = allData[region] || [];
+        renderPositions(positions);
+    }
+
+    function renderPositions(positions) {
+        positionsContainer.innerHTML = '';
+        positionCount.textContent = positions.length;
+        if (positions.length === 0) {
+            positionsContainer.innerHTML = `
+                <div class="empty-state">
+                    <i class="fas fa-inbox"></i>
+                    <p>لا توجد وضعيات لهذه المنطقة بعد.</p>
+                    <p style="font-size:0.9rem;color:#aaaaaa;">يمكنك إضافة وضعيات من صفحة الإدارة</p>
+                </div>`;
+            return;
+        }
+        positions.forEach((pos, index) => {
+            const div = document.createElement('div');
+            div.className = 'position-item';
+            if (pos === selectedPosition) div.classList.add('active');
+            div.innerHTML = `
+                <span class="pos-icon"><i class="fas fa-x-ray"></i></span>
+                <span class="pos-name">${pos.name || `وضعية ${index + 1}`}</span>
+                <span class="pos-arrow"><i class="fas fa-chevron-left"></i></span>`;
+            div.addEventListener('click', () => {
+                document.querySelectorAll('.position-item').forEach(p => p.classList.remove('active'));
+                div.classList.add('active');
+                selectedPosition = pos;
+                showDetail(pos);
+            });
+            positionsContainer.appendChild(div);
+        });
+    }
+
+    function showDetail(pos) {
+        selectedPosition = pos;
+        detailBox.style.display = 'block';
+        detailTitle.textContent = pos.name || 'تفاصيل الوضعية';
+        detailBadge.textContent = pos.region || selectedRegion;
+        const realImgSrc = pos.realImg || '';
+        const xrayImgSrc = pos.xrayImg || '';
+        const placeholder = 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'300\'%3E%3Crect width=\'400\' height=\'300\' fill=\'%23f1f2f6\'/%3E%3Ctext x=\'50%\' y=\'50%\' font-family=\'sans-serif\' font-size=\'20\' fill=\'%23bdc3c7\' text-anchor=\'middle\' dy=\'.3em\'%3E🚫 لا توجد صورة%3C/text%3E%3C/svg%3E';
+        
+        lightboxImages = [
+            { src: realImgSrc, caption: 'صورة حقيقية - ' + (pos.name || '') },
+            { src: xrayImgSrc, caption: 'صورة شعاعية - ' + (pos.name || '') }
+        ].filter(img => img.src && img.src !== '');
+        if (lightboxImages.length === 0) {
+            lightboxImages = [{ src: placeholder, caption: 'لا توجد صورة' }];
+        }
+        
+        detailImages.innerHTML = `
+            <figure>
+                <img src="${realImgSrc || placeholder}" alt="صورة حقيقية - ${pos.name}" onerror="this.src='${placeholder}'" onclick="openLightbox(0)">
+                <figcaption><i class="fas fa-camera"></i> صورة حقيقية <span style="font-size:0.8rem;color:#aaaaaa;font-weight:400;"> (انقر للتكبير)</span></figcaption>
+            </figure>
+            <figure>
+                <img src="${xrayImgSrc || placeholder}" alt="صورة شعاعية - ${pos.name}" onerror="this.src='${placeholder}'" onclick="openLightbox(1)">
+                <figcaption><i class="fas fa-x-ray" style="color:#f1c40f;"></i> صورة شعاعية <span style="font-size:0.8rem;color:#aaaaaa;font-weight:400;"> (انقر للتكبير)</span></figcaption>
+            </figure>`;
+        applyWatermarkToDetailImages();
+
+        detailInfo.innerHTML = `
+            <div><strong>⚡ KVP</strong><span>${pos.kvp || '—'}</span></div>
+            <div><strong>📊 MAS</strong><span>${pos.mas || '—'}</span></div>
+            <div><strong>🎯 سنتر التصوير</strong><span>${pos.center || '—'}</span></div>
+            <div><strong>📍 المنطقة</strong><span>${selectedRegion}</span></div>`;
+        detailPurpose.innerHTML = `
+            <h4><i class="fas fa-bullseye"></i> الغرض من الوضعية</h4>
+            <p>${pos.purpose || 'لا يوجد وصف للغرض.'}</p>`;
+        detailBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    window.openLightbox = function(index) {
+        if (lightboxImages.length === 0) return;
+        lightboxIndex = index;
+        updateLightbox();
+        lightbox.classList.add('show');
+        document.body.style.overflow = 'hidden';
+        fillWatermarkPattern();
+    };
+
+    function updateLightbox() {
+        const img = lightboxImages[lightboxIndex];
+        if (img) {
+            lightboxImage.src = img.src;
+            lightboxCaption.textContent = img.caption;
+            lightboxCounter.textContent = `${lightboxIndex + 1} / ${lightboxImages.length}`;
+            lightboxPrev.style.display = lightboxImages.length > 1 ? 'flex' : 'none';
+            lightboxNext.style.display = lightboxImages.length > 1 ? 'flex' : 'none';
+            lightboxPrev.style.opacity = lightboxIndex === 0 ? '0.3' : '1';
+            lightboxNext.style.opacity = lightboxIndex === lightboxImages.length - 1 ? '0.3' : '1';
+        }
+    }
+
+    function closeLightbox() {
+        lightbox.classList.remove('show');
+        document.body.style.overflow = '';
+    }
+
+    function navigateLightbox(direction) {
+        const newIndex = lightboxIndex + direction;
+        if (newIndex >= 0 && newIndex < lightboxImages.length) {
+            lightboxIndex = newIndex;
+            updateLightbox();
+        }
+    }
+
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightboxPrev.addEventListener('click', () => navigateLightbox(-1));
+    lightboxNext.addEventListener('click', () => navigateLightbox(1));
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') navigateLightbox(-1);
+        if (e.key === 'ArrowRight') navigateLightbox(1);
+    });
+    window.addEventListener('resize', () => {
+        if (lightbox.classList.contains('show')) fillWatermarkPattern();
+    });
+
+    // ---------- وظائف الاختبار ----------
+    // تحديث قائمة المناطق في الاختبار
+    function updateQuizRegionSelect() {
+        quizRegionSelect.innerHTML = '<option value="">-- اختر المنطقة --</option>';
+        const availableRegions = Object.keys(allData).filter(reg => allData[reg] && allData[reg].length >= 4);
+        availableRegions.forEach(reg => {
+            const option = document.createElement('option');
+            option.value = reg;
+            option.textContent = reg;
+            quizRegionSelect.appendChild(option);
+        });
+    }
+
+    // خلط المصفوفة عشوائياً
+    function shuffleArray(arr) {
+        const a = [...arr];
+        for (let i = a.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
+    }
+
+    // بدء الاختبار لمنطقة محددة
+    function startQuiz(region) {
+        const positions = allData[region] || [];
+        if (positions.length < 4) {
+            quizContent.innerHTML = `<div class="quiz-empty"><i class="fas fa-exclamation-circle"></i><p>يجب أن تحتوي المنطقة على 4 وضعيات على الأقل لإجراء الاختبار.</p></div>`;
+            return;
+        }
+        // إنشاء أسئلة: كل وضعية ستظهر كسؤال مرة واحدة (ترتيب عشوائي)
+        const shuffledPositions = shuffleArray(positions);
+        quizQuestions = shuffledPositions.map(pos => {
+            // اختيار صورة عشوائية بين الحقيقية والشعاعية إذا كانت موجودة
+            const images = [];
+            if (pos.realImg) images.push(pos.realImg);
+            if (pos.xrayImg) images.push(pos.xrayImg);
+            const imageSrc = images.length > 0 ? images[Math.floor(Math.random() * images.length)] : '';
+            
+            // إنشاء خيارات: الإجابة الصحيحة + 3 خيارات خاطئة من نفس المنطقة
+            const otherPositions = positions.filter(p => p.id !== pos.id);
+            const wrongChoices = shuffleArray(otherPositions).slice(0, 3).map(p => p.name);
+            const choices = shuffleArray([pos.name, ...wrongChoices]);
+            
+            return {
+                imageSrc: imageSrc,
+                correctAnswer: pos.name,
+                choices: choices,
+                positionName: pos.name
+            };
+        });
+        currentQuestionIndex = 0;
+        correctCount = 0;
+        answered = false;
+        updateQuizScore();
+        renderQuestion();
+    }
+
+    // عرض السؤال الحالي
+    function renderQuestion() {
+        if (quizQuestions.length === 0 || currentQuestionIndex >= quizQuestions.length) {
+            // انتهى الاختبار
+            quizContent.innerHTML = `
+                <div style="text-align:center; padding: 30px;">
+                    <i class="fas fa-trophy" style="font-size: 4rem; color: #f1c40f;"></i>
+                    <h3 style="margin: 15px 0; color: #000;">انتهى الاختبار!</h3>
+                    <p style="font-size: 1.2rem;">نتيجتك: <strong>${correctCount}</strong> من <strong>${quizQuestions.length}</strong></p>
+                    <button class="quiz-next-btn" onclick="restartQuiz()"><i class="fas fa-redo"></i> إعادة الاختبار</button>
+                </div>`;
+            updateQuizScore();
+            return;
+        }
+        const question = quizQuestions[currentQuestionIndex];
+        answered = false;
+        const placeholder = 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'300\'%3E%3Crect width=\'400\' height=\'300\' fill=\'%23f1f2f6\'/%3E%3Ctext x=\'50%\' y=\'50%\' font-family=\'sans-serif\' font-size=\'20\' fill=\'%23bdc3c7\' text-anchor=\'middle\' dy=\'.3em\'%3E🚫 لا توجد صورة%3C/text%3E%3C/svg%3E';
+        const imgSrc = question.imageSrc || placeholder;
+        
+        let html = `
+            <div class="quiz-question-area">
+                <p style="margin-bottom:15px; font-weight:600;">السؤال ${currentQuestionIndex + 1} من ${quizQuestions.length}: ما اسم هذه الوضعية؟</p>
+                <div class="quiz-image-container">
+                    <img src="${imgSrc}" alt="وضعية" id="quizImage" onerror="this.src='${placeholder}'">
+                </div>
+                <div class="quiz-choices" id="quizChoices">
+        `;
+        question.choices.forEach((choice, idx) => {
+            html += `<button class="quiz-choice-btn" data-choice="${choice}">${choice}</button>`;
+        });
+        html += `</div><div class="quiz-feedback" id="quizFeedback"></div></div>`;
+        quizContent.innerHTML = html;
+
+        // إضافة علامة مائية على صورة السؤال
+        const quizImage = document.getElementById('quizImage');
+        if (quizImage) {
+            addWatermarkToImage(quizImage, WATERMARK_TEXT);
+        }
+
+        // أحداث الأزرار
+        const choiceButtons = document.querySelectorAll('.quiz-choice-btn');
+        choiceButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                if (answered) return;
+                answered = true;
+                const selectedChoice = this.dataset.choice;
+                const correct = question.correctAnswer;
+                const feedback = document.getElementById('quizFeedback');
+                
+                // تعطيل جميع الأزرار
+                choiceButtons.forEach(b => b.disabled = true);
+                
+                if (selectedChoice === correct) {
+                    this.classList.add('correct');
+                    correctCount++;
+                    feedback.innerHTML = '<span style="color:#27ae60;">✅ إجابة صحيحة! أحسنت.</span>';
+                } else {
+                    this.classList.add('wrong');
+                    // تحديد الإجابة الصحيحة
+                    choiceButtons.forEach(b => {
+                        if (b.dataset.choice === correct) b.classList.add('correct');
+                    });
+                    feedback.innerHTML = `<span style="color:#e74c3c;">❌ إجابة خاطئة. الإجابة الصحيحة هي: ${correct}</span>`;
+                }
+                updateQuizScore();
+                
+                // زر التالي يظهر بعد قليل أو نضيفه
+                const nextBtn = document.createElement('button');
+                nextBtn.className = 'quiz-next-btn';
+                nextBtn.innerHTML = '<i class="fas fa-arrow-left"></i> التالي';
+                nextBtn.addEventListener('click', () => {
+                    currentQuestionIndex++;
+                    renderQuestion();
+                });
+                feedback.appendChild(document.createElement('br'));
+                feedback.appendChild(nextBtn);
+            });
+        });
+    }
+
+    function updateQuizScore() {
+        quizScore.textContent = `${correctCount} / ${quizQuestions.length}`;
+    }
+
+    window.restartQuiz = function() {
+        const region = quizRegionSelect.value;
+        if (region && allData[region]) {
+            startQuiz(region);
+        } else {
+            quizContent.innerHTML = `<div class="quiz-empty"><i class="fas fa-hand-pointer"></i><p>الرجاء اختيار منطقة من القائمة أعلاه.</p></div>`;
+            quizScore.textContent = '0 / 0';
+        }
+    };
+
+    // حدث اختيار المنطقة في الاختبار
+    quizRegionSelect.addEventListener('change', function() {
+        const region = this.value;
+        if (region) {
+            startQuiz(region);
+        } else {
+            quizContent.innerHTML = `<div class="quiz-empty"><i class="fas fa-hand-pointer"></i><p>الرجاء اختيار منطقة من القائمة أعلاه.</p></div>`;
+            quizScore.textContent = '0 / 0';
+        }
+    });
+
+    // زر إظهار قسم الاختبار
+    startQuizBtn.addEventListener('click', function() {
+        quizSection.classList.toggle('show');
+        if (quizSection.classList.contains('show')) {
+            updateQuizRegionSelect();
+            quizSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    });
+
+    // البحث
+    searchInput.addEventListener('input', (e) => {
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(() => {
+            const query = e.target.value.trim();
+            renderRegions(query);
+            if (selectedRegion && !regions.some(r => r.name === selectedRegion && 
+                (r.name.toLowerCase().includes(query.toLowerCase()) || r.icon.includes(query)))) {
+                positionList.style.display = 'none';
+                detailBox.style.display = 'none';
+            } else if (selectedRegion) {
+                const positions = allData[selectedRegion] || [];
+                renderPositions(positions);
+                positionList.style.display = 'block';
+            }
+        }, 300);
+    });
+
+    // تحميل البيانات من Firebase
+    function loadData() {
+        const dataRef = ref(db, 'positions');
+        onValue(dataRef, (snapshot) => {
+            const data = snapshot.val();
+            if (data) {
+                allData = {};
+                Object.keys(data).forEach(key => {
+                    const item = data[key];
+                    const region = item.region || 'OTHER';
+                    if (!allData[region]) allData[region] = [];
+                    allData[region].push({
+                        id: key,
+                        name: item.name || 'وضعية',
+                        realImg: item.realImg || '',
+                        xrayImg: item.xrayImg || '',
+                        kvp: item.kvp || '',
+                        mas: item.mas || '',
+                        center: item.center || '',
+                        purpose: item.purpose || '',
+                        region: region
+                    });
+                });
+                if (selectedRegion && allData[selectedRegion]) {
+                    renderPositions(allData[selectedRegion]);
+                    positionList.style.display = 'block';
+                } else if (selectedRegion) {
+                    selectedRegion = null;
+                    positionList.style.display = 'none';
+                    detailBox.style.display = 'none';
+                    document.querySelectorAll('.region-btn').forEach(b => b.classList.remove('selected'));
+                }
+                // تحديث قائمة الاختبار إذا كان مفتوحاً
+                if (quizSection.classList.contains('show')) {
+                    updateQuizRegionSelect();
+                }
+            } else {
+                allData = {};
+                positionList.style.display = 'none';
+                detailBox.style.display = 'none';
+                if (selectedRegion) {
+                    selectedRegion = null;
+                    document.querySelectorAll('.region-btn').forEach(b => b.classList.remove('selected'));
+                }
+            }
+        }, (error) => {
+            console.error('خطأ في تحميل البيانات:', error);
+            positionsContainer.innerHTML = `
+                <div class="empty-state" style="color:#000000;">
+                    <i class="fas fa-exclamation-triangle" style="color:#f1c40f;"></i>
+                    <p>⚠️ حدث خطأ في تحميل البيانات. حاول لاحقاً.</p>
+                </div>`;
+        });
+    }
+
+    renderRegions();
+    loadData();
+</script>
 
 </body>
 </html>
