@@ -954,7 +954,7 @@
 
     <!-- التذييل -->
     <div class="footer">
-        <p class="credit">تم تصميم هذا الموقع من قبل التدريسي <strong>مجتبى كريم</strong> و تقني الاشعة <strong>نور الزهراء علي عبد</strong></p>
+        <p class="credit">تم تصميم هذا الموقع من قبل التدريسي <strong>مجتبى كريم</strong> و تقني الاشعة <strong>نور الزهراء علي عبد</strong> و تقني الاشعة <strong>زهراء علي طالب</strong></p>
         <div class="social-links">
             <a href="https://www.instagram.com/mojtabakr1.sc?igsh=bXR0YjM1MzJ0NmE0" target="_blank">
                 <i class="fab fa-instagram"></i> @mojtabakr1.sc
@@ -1294,7 +1294,6 @@
     });
 
     // ---------- وظائف الاختبار ----------
-    // تحديث قائمة المناطق في الاختبار
     function updateQuizRegionSelect() {
         quizRegionSelect.innerHTML = '<option value="">-- اختر المنطقة --</option>';
         const availableRegions = Object.keys(allData).filter(reg => allData[reg] && allData[reg].length >= 4);
@@ -1306,7 +1305,6 @@
         });
     }
 
-    // خلط المصفوفة عشوائياً
     function shuffleArray(arr) {
         const a = [...arr];
         for (let i = a.length - 1; i > 0; i--) {
@@ -1316,23 +1314,19 @@
         return a;
     }
 
-    // بدء الاختبار لمنطقة محددة
     function startQuiz(region) {
         const positions = allData[region] || [];
         if (positions.length < 4) {
             quizContent.innerHTML = `<div class="quiz-empty"><i class="fas fa-exclamation-circle"></i><p>يجب أن تحتوي المنطقة على 4 وضعيات على الأقل لإجراء الاختبار.</p></div>`;
             return;
         }
-        // إنشاء أسئلة: كل وضعية ستظهر كسؤال مرة واحدة (ترتيب عشوائي)
         const shuffledPositions = shuffleArray(positions);
         quizQuestions = shuffledPositions.map(pos => {
-            // اختيار صورة عشوائية بين الحقيقية والشعاعية إذا كانت موجودة
             const images = [];
             if (pos.realImg) images.push(pos.realImg);
             if (pos.xrayImg) images.push(pos.xrayImg);
             const imageSrc = images.length > 0 ? images[Math.floor(Math.random() * images.length)] : '';
             
-            // إنشاء خيارات: الإجابة الصحيحة + 3 خيارات خاطئة من نفس المنطقة
             const otherPositions = positions.filter(p => p.id !== pos.id);
             const wrongChoices = shuffleArray(otherPositions).slice(0, 3).map(p => p.name);
             const choices = shuffleArray([pos.name, ...wrongChoices]);
@@ -1351,10 +1345,8 @@
         renderQuestion();
     }
 
-    // عرض السؤال الحالي
     function renderQuestion() {
         if (quizQuestions.length === 0 || currentQuestionIndex >= quizQuestions.length) {
-            // انتهى الاختبار
             quizContent.innerHTML = `
                 <div style="text-align:center; padding: 30px;">
                     <i class="fas fa-trophy" style="font-size: 4rem; color: #f1c40f;"></i>
@@ -1384,13 +1376,11 @@
         html += `</div><div class="quiz-feedback" id="quizFeedback"></div></div>`;
         quizContent.innerHTML = html;
 
-        // إضافة علامة مائية على صورة السؤال
         const quizImage = document.getElementById('quizImage');
         if (quizImage) {
             addWatermarkToImage(quizImage, WATERMARK_TEXT);
         }
 
-        // أحداث الأزرار
         const choiceButtons = document.querySelectorAll('.quiz-choice-btn');
         choiceButtons.forEach(btn => {
             btn.addEventListener('click', function() {
@@ -1400,7 +1390,6 @@
                 const correct = question.correctAnswer;
                 const feedback = document.getElementById('quizFeedback');
                 
-                // تعطيل جميع الأزرار
                 choiceButtons.forEach(b => b.disabled = true);
                 
                 if (selectedChoice === correct) {
@@ -1409,7 +1398,6 @@
                     feedback.innerHTML = '<span style="color:#27ae60;">✅ إجابة صحيحة! أحسنت.</span>';
                 } else {
                     this.classList.add('wrong');
-                    // تحديد الإجابة الصحيحة
                     choiceButtons.forEach(b => {
                         if (b.dataset.choice === correct) b.classList.add('correct');
                     });
@@ -1417,7 +1405,6 @@
                 }
                 updateQuizScore();
                 
-                // زر التالي يظهر بعد قليل أو نضيفه
                 const nextBtn = document.createElement('button');
                 nextBtn.className = 'quiz-next-btn';
                 nextBtn.innerHTML = '<i class="fas fa-arrow-left"></i> التالي';
@@ -1445,7 +1432,6 @@
         }
     };
 
-    // حدث اختيار المنطقة في الاختبار
     quizRegionSelect.addEventListener('change', function() {
         const region = this.value;
         if (region) {
@@ -1456,7 +1442,6 @@
         }
     });
 
-    // زر إظهار قسم الاختبار
     startQuizBtn.addEventListener('click', function() {
         quizSection.classList.toggle('show');
         if (quizSection.classList.contains('show')) {
@@ -1465,7 +1450,6 @@
         }
     });
 
-    // البحث
     searchInput.addEventListener('input', (e) => {
         clearTimeout(searchTimeout);
         searchTimeout = setTimeout(() => {
@@ -1483,7 +1467,6 @@
         }, 300);
     });
 
-    // تحميل البيانات من Firebase
     function loadData() {
         const dataRef = ref(db, 'positions');
         onValue(dataRef, (snapshot) => {
@@ -1515,7 +1498,6 @@
                     detailBox.style.display = 'none';
                     document.querySelectorAll('.region-btn').forEach(b => b.classList.remove('selected'));
                 }
-                // تحديث قائمة الاختبار إذا كان مفتوحاً
                 if (quizSection.classList.contains('show')) {
                     updateQuizRegionSelect();
                 }
