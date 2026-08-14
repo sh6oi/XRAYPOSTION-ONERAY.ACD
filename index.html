@@ -1159,8 +1159,8 @@
                 // إظهار مؤشر التحميل
                 modalLoading.classList.remove('hidden');
                 
-                // تعيين مصدر الإطار
-                modalIframe.src = "https://sh6oi.github.io/testpos/";
+                // ✅ التعديل: تحميل ملف main.html المحلي بدلاً من الرابط
+                modalIframe.src = "main.html";
                 
                 // عند تحميل الإطار
                 modalIframe.onload = function() {
@@ -1170,7 +1170,7 @@
                 // في حالة فشل التحميل
                 modalIframe.onerror = function() {
                     modalLoading.classList.add('hidden');
-                    alert('⚠️ حدث خطأ في تحميل الموقع، تأكد من الاتصال بالإنترنت وحاول مرة أخرى.');
+                    alert('⚠️ حدث خطأ في تحميل الملف، تأكد من وجود main.html في نفس المجلد.');
                 };
             });
 
